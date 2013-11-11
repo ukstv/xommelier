@@ -2,7 +2,8 @@
 
 ################################################
 # © Alexander Semyonov, 2011—2013, MIT License #
-# Author: Alexander Semyonov <al@semyonov.us>  #
+# Authors: Alexander Semyonov <al@semyonov.us> #
+#          Sergey Ukustov <sergey@ukstv.me>    #
 ################################################
 
 module Xommelier
@@ -36,7 +37,11 @@ module Xommelier
           end
 
           def complex_type?
-            type < Xml::Element
+            if type.respond_to?(:complex_type?)
+              type.complex_type?
+            else
+              type < Xml::Element
+            end
           end
 
           # @return [true, false] has default value?

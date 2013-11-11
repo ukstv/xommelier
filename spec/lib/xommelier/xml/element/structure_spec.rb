@@ -2,33 +2,51 @@
 
 ################################################
 # © Alexander Semyonov, 2011—2013, MIT License #
-# Author: Alexander Semyonov <al@semyonov.us>  #
+# Authors: Alexander Semyonov <al@semyonov.us> #
+#          Sergey Ukustov <sergey@ukstv.me>    #
 ################################################
 
 require 'spec_helper'
 
 describe Xommelier::Xml::Element::Structure do
-  subject { NamespacedModule::RootWithSimpleSubelement }
+  NamespacedModule = Xommelier::Spec::Examples::NamespacedModule
 
-  it { should respond_to(:elements) }
-  it { should respond_to(:element) }
-  it 'defines subelement' do
-    NamespacedModule::RootWithSimpleSubelement.elements.should have_key(:some)
+  describe 'defines subelements' do
+    context 'for instance of Element' do
+      subject { NamespacedModule::RootWithSimpleSubelement }
+
+      it { should respond_to(:elements) }
+      it { should respond_to(:element) }
+      its(:elements) { should have_key(:some) }
+    end
+
+    context 'for custom class' do
+      subject { NamespacedModule::ClassWithElementStructure }
+
+      it { should respond_to(:elements) }
+      it { should respond_to(:element) }
+      its(:elements) { should have_key(:custom_element) }
+    end
   end
 
-  it { should respond_to(:attributes) }
-  it { should respond_to(:attribute) }
-  it 'defines attribute' do
-    NamespacedModule::RootWithAttribute.attributes.should have_key(:another)
+  describe 'defines attribute' do
+    subject { NamespacedModule::RootWithAttribute }
+
+    it { should respond_to(:attributes) }
+    it { should respond_to(:attribute) }
+    its(:attributes) { should have_key(:another) }
   end
 
-  it { should respond_to(:text) }
-  it 'defines as containing text' do
-    NamespacedModule::RootWithText.new.should respond_to(:text)
+  describe 'defines text container' do
+    subject { NamespacedModule::RootWithText.new }
+
+    it { should respond_to(:text) }
+    its(:class) { should respond_to(:text) }
   end
 
-  it { should respond_to(:xmlns) }
-  it { NamespacedModule::RootWithText.xmlns.uri.should == 'http://example.org/'}
-  it { NamespacedModule::RootWithAttribute.xmlns.uri.should == 'http://example.org/'}
-  it { Xommelier::Atom::Feed.xmlns.uri.should == 'http://www.w3.org/2005/Atom'}
+  describe 'handles xml namespaces' do
+    subject { NamespacedModule::RootWithSimpleSubelement }
+    its('xmlns.uri') { should eq 'http://example.org/' }
+  end
+
 end

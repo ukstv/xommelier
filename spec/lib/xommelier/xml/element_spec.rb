@@ -2,12 +2,15 @@
 
 ################################################
 # © Alexander Semyonov, 2011—2013, MIT License #
-# Author: Alexander Semyonov <al@semyonov.us>  #
+# Authors: Alexander Semyonov <al@semyonov.us> #
+#          Sergey Ukustov <sergey@ukstv.me>    #
 ################################################
 
 require 'spec_helper'
 
 describe Xommelier::Xml::Element do
+  NamespacedModule = Xommelier::Spec::Examples::NamespacedModule
+
   describe 'class' do
     subject { Xommelier::Atom::Link }
 

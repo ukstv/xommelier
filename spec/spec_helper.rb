@@ -13,7 +13,6 @@ require 'rspec'
 SimpleCov.start
 
 require 'xommelier'
-require 'namespaced_module'
 
 #noinspection RubyResolve
 Dir[File.join(SPEC_ROOT, 'spec/support/**/*.rb')].each {|f| require f}

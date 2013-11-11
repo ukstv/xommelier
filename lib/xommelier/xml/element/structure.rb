@@ -2,7 +2,8 @@
 
 ################################################
 # © Alexander Semyonov, 2011—2013, MIT License #
-# Author: Alexander Semyonov <al@semyonov.us>  #
+# Authors: Alexander Semyonov <al@semyonov.us> #
+#          Sergey Ukustov <sergey@ukstv.me>    #
 ################################################
 
 require 'xommelier/xml/element'
@@ -51,6 +52,14 @@ module Xommelier
           def inherited(child)
             child.elements   = elements.dup
             child.attributes = attributes.dup
+          end
+
+          def xmlns
+            if defined?(super)
+              super
+            else
+              nil
+            end
           end
 
           # Defines containing element

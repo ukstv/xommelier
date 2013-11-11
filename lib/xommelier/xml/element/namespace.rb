@@ -2,7 +2,8 @@
 
 ################################################
 # © Alexander Semyonov, 2011—2013, MIT License #
-# Author: Alexander Semyonov <al@semyonov.us>  #
+# Authors: Alexander Semyonov <al@semyonov.us> #
+#          Sergey Ukustov <sergey@ukstv.me>    #
 ################################################
 
 require 'xommelier/xml/element'
@@ -45,12 +46,12 @@ module Xommelier
 
           # @return [Module, Class]
           def containing_module
-            @containing_module ||= ("::#{name.gsub(/::[^:]+$/, '')}").constantize
+            @containing_module ||= ("::#{name.gsub(/::[^:]+$/, '')}").safe_constantize
           end
 
           # @return [Xommelier::Xml::Namespace]
           def find_namespace
-            (self == containing_module ? Xommelier::Xml : containing_module).xmlns
+            (containing_module.blank? || name == containing_module.to_s ? Xommelier::Xml : containing_module).xmlns
           end
         end
 

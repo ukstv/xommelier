@@ -2,13 +2,15 @@
 
 ################################################
 # © Alexander Semyonov, 2011—2013, MIT License #
-# Author: Alexander Semyonov <al@semyonov.us>  #
+# Authors: Alexander Semyonov <al@semyonov.us> #
+#          Sergey Ukustov <sergey@ukstv.me>    #
 ################################################
 
 require 'xommelier/xml'
 require 'xommelier/xml/element/namespace'
 require 'xommelier/xml/element/structure'
-require 'xommelier/xml/element/serialization'
+require 'xommelier/xml/element/serializable'
+require 'xommelier/xml/element/serializable/composition'
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/array/extract_options'
 require 'active_support/core_ext/class/attribute'
@@ -18,7 +20,7 @@ module Xommelier
     class Element
       include Xommelier::Xml::Element::Namespace
       include Xommelier::Xml::Element::Structure
-      include Xommelier::Xml::Element::Serialization
+      include Xommelier::Xml::Element::Serializable
 
       attr_reader :options
 
