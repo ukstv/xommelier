@@ -45,5 +45,7 @@ module Xommelier
       attribute :lang, optional: true, xml: true
       attribute :base, type: Uri, optional: true, xml: true
     end
+
+    require 'xommelier/xml/element/serialization'
   end
 end
