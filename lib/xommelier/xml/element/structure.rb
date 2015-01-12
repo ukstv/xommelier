@@ -55,7 +55,7 @@ module Xommelier
             child.attributes = attributes.dup
           end
 
-          def xmlns
+          def xmlns(*args)
             if defined?(super)
               super
             else
