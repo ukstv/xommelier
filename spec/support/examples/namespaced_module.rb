@@ -21,6 +21,10 @@ module Xommelier
           element :some
         end
 
+        class RootWithFixedSubelement < Xommelier::Xml::Element
+          element :some, fixed: 'FOO'
+        end
+
         class RootWithAttribute < Xommelier::Xml::Element
           attribute :one, type: Date
           attribute :another

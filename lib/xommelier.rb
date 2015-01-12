@@ -36,6 +36,12 @@ module Xommelier
       super("Cannot typecast #{object.inspect} to #{type}")
     end
   end
+
+  class FixedValueError < Error
+    def initialize(element, given, correct)
+      super("Can not use #{given} as value for <#{element.name}/> fixed to #{correct}")
+    end
+  end
 end
 
 require 'xommelier/xml'

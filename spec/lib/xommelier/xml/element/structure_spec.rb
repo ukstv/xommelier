@@ -49,4 +49,16 @@ describe Xommelier::Xml::Element::Structure do
     its('xmlns.uri') { should eq 'http://example.org/' }
   end
 
+  context 'fixed element value' do
+    let(:xommelier) { NamespacedModule::RootWithFixedSubelement }
+    let(:xml) do
+      '<root-with-fixed-subelement><some>33</some></root-with-fixed-subelement>'
+    end
+    specify 'prohibits wrong value' do
+      expect do
+        xommelier.from_xml(xml)
+      end.to raise_error(Xommelier::FixedValueError)
+    end
+  end
+
 end

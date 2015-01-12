@@ -30,9 +30,9 @@ module Xommelier
 
         module ClassMethods
           def from_xml(xml, options = {})
-            new({}, options).tap do |doc|
-              doc.from_xml(xml, options)
-            end
+            doc = new({}, options)
+            doc.from_xml(xml, options)
+            doc
           end
 
           alias_method :parse, :from_xml
