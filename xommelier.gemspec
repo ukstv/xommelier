@@ -20,9 +20,9 @@ Gem::Specification.new do |s|
   s.require_paths = %w(lib)
 
   s.add_dependency 'nokogiri', '~> 1.5'
-  s.add_dependency 'activesupport', '~> 4.0.0'
-  s.add_dependency 'activemodel', '~> 4.0.0'
-  s.add_development_dependency 'bundler', '~> 1.3.2'
+  s.add_dependency 'activesupport'
+  s.add_dependency 'activemodel'
+  s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake', '~> 10.1.0'
   s.add_development_dependency 'rspec', '~> 2.14.0'
   s.add_development_dependency 'simplecov', '~> 0.8.0'
