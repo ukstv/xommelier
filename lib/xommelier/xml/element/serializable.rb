@@ -30,9 +30,13 @@ module Xommelier
 
         module ClassMethods
           def from_xml(xml, options = {})
-            doc = new({}, options)
-            doc.from_xml(xml, options)
-            doc
+            if xml.class == self.class
+              xml
+            else
+              doc = new({}, options)
+              doc.from_xml(xml, options)
+              doc
+            end
           end
 
           alias_method :parse, :from_xml
