@@ -30,7 +30,7 @@ module Xommelier
 
         module ClassMethods
           def from_xml(xml, options = {})
-            if xml.class == self.class
+            if xml.class == self
               xml
             else
               doc = new({}, options)
