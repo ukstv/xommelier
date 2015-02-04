@@ -24,3 +24,9 @@ class Time
     xmlschema
   end
 end
+
+class ActiveSupport::TimeWithZone
+  def to_xommelier
+    xmlschema
+  end
+end
