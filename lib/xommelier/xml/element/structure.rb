@@ -154,11 +154,13 @@ module Xommelier
             elsif element.fixed?
               # Define singular pseudo-accessors
               rw_accessor(name) do |*args|
-                if args.length == 1 && args[0] == element.fixed
-                  write_element(name, element.fixed)
-                  element.fixed
-                else
-                  raise Xommelier::FixedValueError.new(element, args[0], element.fixed)
+                if args.length == 1
+                  value = args[0]
+                  if value == element.fixed
+                    write_element(name, element.fixed)
+                  else
+                    raise Xommelier::FixedValueError.new(element, value, element.fixed)
+                  end
                 end
               end
             else
